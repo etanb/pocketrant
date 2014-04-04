@@ -1,5 +1,9 @@
 source 'https://rubygems.org'
 
+gem 'httparty'
+
+gem 'devise'
+
 gem 'twilio-ruby', '~> 3.11'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.0.3'

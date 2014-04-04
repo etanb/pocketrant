@@ -1,5 +1,6 @@
 require 'twilio-ruby'
 class TwilioController < ApplicationController
+  include SentimentHelper
   include Webhookable
  
   after_filter :set_header
@@ -15,17 +16,19 @@ class TwilioController < ApplicationController
   end
 
   def sms
-    number_to_send_to = params[:From]
+    @twilio_client = Twilio::REST::Client.new TWILIO_SID, TWILIO_TOKEN
+    @message_content = params[:Body]
+    @message_sender_phone = params[:From]
  
 
     twilio_phone_number = "6467626027"
- 
-    @twilio_client = Twilio::REST::Client.new TWILIO_SID, TWILIO_TOKEN
+
+    alchemy_general_sentiment(@message_content)
 
     @twilio_client.account.sms.messages.create(
       :from => "+1#{twilio_phone_number}",
-      :to => number_to_send_to,
-      :body => "This is a message. It gets sent to #{number_to_send_to}"
+      :to => @message_sender_phone,
+      :body => "Your feelings have been recorded. Thank you!"
     )
   end
 
