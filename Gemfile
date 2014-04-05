@@ -1,8 +1,14 @@
 source 'https://rubygems.org'
 
+gem 'morrisjs-rails'
+
+gem 'raphael-rails'
+
 gem 'httparty'
 
 gem 'devise'
+
+gem 'zurb-foundation'
 
 gem 'twilio-ruby', '~> 3.11'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'

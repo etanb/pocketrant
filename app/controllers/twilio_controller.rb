@@ -4,11 +4,15 @@ class TwilioController < ApplicationController
   include Webhookable
  
   after_filter :set_header
+
+  def create
+    alchemy_general_sentiment(params[:text])
+  end
  
   def voice
 
     response = Twilio::TwiML::Response.new do |r|
-      r.Say 'Hey there. Congrats on integrating Twilio into your Rails 4 app.', :voice => 'alice'
+      r.Say 'Thank you for calling pocket rant! We can only accept text entries, thank you.', :voice => 'alice'
          r.Play 'http://linode.rabasa.com/cantina.mp3'
     end
  
