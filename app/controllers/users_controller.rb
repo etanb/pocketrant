@@ -4,8 +4,8 @@ class UsersController < ApplicationController
   prepend_before_filter :require_no_authentication, :only => [:create]
 
   def show
-    @messages = Message.all
-    binding.pry
+    gon.messages = Message.all
+
   end
 
 

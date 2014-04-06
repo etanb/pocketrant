@@ -1,5 +1,9 @@
 source 'https://rubygems.org'
 
+gem 'gon', '3.0.5'
+
+gem 'rabl-rails'
+
 gem 'morrisjs-rails'
 
 gem 'raphael-rails'

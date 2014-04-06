@@ -57,6 +57,9 @@ GEM
       factory_girl (~> 4.4.0)
       railties (>= 3.0.0)
     ffaker (1.2.0)
+    gon (3.0.5)
+      actionpack (>= 2.3.0)
+      json
     hike (1.2.3)
     httparty (0.13.0)
       json (~> 1.8)
@@ -99,6 +102,9 @@ GEM
       slop (~> 3.4)
     pry-rails (0.3.2)
       pry (>= 0.9.10)
+    rabl-rails (0.3.4)
+      activesupport (>= 3.1)
+      railties (>= 3.1)
     rack (1.5.2)
     rack-test (0.6.2)
       rack (>= 1.0)
@@ -193,6 +199,7 @@ DEPENDENCIES
   devise
   factory_girl_rails
   ffaker (~> 1.2.0)
+  gon (= 3.0.5)
   httparty
   jasmine
   jbuilder (~> 1.2)
@@ -201,6 +208,7 @@ DEPENDENCIES
   morrisjs-rails
   pg
   pry-rails
+  rabl-rails
   rails (= 4.0.3)
   rails-erd
   rails_12factor
