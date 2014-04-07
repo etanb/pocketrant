@@ -12,6 +12,7 @@
 //
 //= require raphael
 //= require morris
+//= require underscore
 //= require jquery
 //= require jquery_ujs
 //= require foundation

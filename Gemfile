@@ -4,6 +4,8 @@ gem 'gon', '3.0.5'
 
 gem 'rabl-rails'
 
+gem 'underscore-rails'
+
 gem 'morrisjs-rails'
 
 gem 'raphael-rails'

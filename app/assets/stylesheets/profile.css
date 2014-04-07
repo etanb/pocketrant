@@ -1,3 +1,15 @@
 #feeling-box {
   width: 35%;
 }
+
+#donuts {
+  text-align: center;
+}
+
+#positive-keywords {
+  display: inline-block;
+}
+
+#negative-keywords {
+  display: inline-block;
+}
