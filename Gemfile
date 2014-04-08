@@ -4,6 +4,8 @@ gem 'gon', '3.0.5'
 
 gem 'sidekiq'
 
+gem 'jquery-ui-rails'
+
 gem 'rabl-rails'
 
 gem 'chronic'

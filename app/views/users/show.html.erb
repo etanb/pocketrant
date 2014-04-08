@@ -1,4 +1,8 @@
-
+<style>
+#overall-sentiment {
+    display: none;
+  }
+</style>
 
 <div id="feeling-box">
   <form id="feeling-add">
@@ -9,14 +13,16 @@
   </form>
 </div>
 
+<div id="buttons">
+  <a id="journal-button" class="button radius">Journal Stats</a>
+  <a id="dream-button" class="button radius">Dream Stats</a>
+</div>
+
 <div id="overall-sentiment"></div>
-
 <div id="donuts">
-
   <div id="positive-keywords"></div>
   <div id="negative-keywords"></div>
 </div>
-
 
 <div id="schedule-box">
   <form id="schedule-add">
@@ -30,7 +36,9 @@
 
 <script>
 
-
+$( "#journal-button" ).click(function() {
+  $( "#overall-sentiment" ).show( "fold", 1000 );
+});
 
   var overall_chart_info_test = [
     { y: '2006', a: 100, b: 90 },

@@ -8,6 +8,9 @@
   <head>
     <%= include_gon %>
   	<meta charset="utf-8" />
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css">
+    <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+    <script src="//code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
     <link rel="stylesheet" href="http://cdn.oesmith.co.uk/morris-0.4.3.min.css">
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script>
@@ -53,7 +56,7 @@
     <!-- Right Nav Section -->
     <ul class="right">
       <li class="active"><a href="#"> <% if user_signed_in? %>
-        Signed in as <%= current_user.email %>. Not you?</a></li>
+        Signed in as <%= current_user.email %>.</a></li>
       <li class="active"><a href="#"><%= link_to "Sign out", destroy_user_session_path, :method => :delete %></a></li>
       <li class="active"><a href="#"><%= link_to "Profile", current_user %></a></li>
       <% else %>

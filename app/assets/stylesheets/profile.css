@@ -2,10 +2,21 @@
   width: 35%;
 }
 
+#journal-button {
+  display: inline-block;
+}
+
+#dream-button {
+  display: inline-block;
+}
+
 #schedule-box {
   width: 35%;
 }
 
+#buttons {
+  text-align: center;
+}
 
 #donuts {
   text-align: center;
