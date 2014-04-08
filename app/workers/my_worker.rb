@@ -7,7 +7,7 @@ class MyWorker
     @twilio_client.account.sms.messages.create(
       :from => "+1#{twilio_phone_number}",
       :to => "+#{phone}",
-      :body => "Good morning. Now, tell me what your dreams were about:"
+      :body => "Good morning. Now, tell me what your dreams were about by starting your text with #dream:"
     )
   end
 end

@@ -1,110 +1,221 @@
-<style>
-#overall-sentiment {
-    display: none;
-  }
-</style>
+<br />
+<br />
+<div id="begin-nav">
+  <h2 class="begin-nav-item">Your Rants:</h2>
+  <div class="begin-nav-item" id="buttons">
+    <a id="journal-button" class="button radius">See Rant Stats</a>
+  </div>
+</div>
+
+<div id="journal-stats">
+  <div id="overall-sentiment"></div>
+  <div id="donuts">
+    <div id="positive-keywords"></div>
+    <div id="negative-keywords"></div>
+  </div>
+</div>
+
+<div id="messages-render" class="row">
+  <ul>
+    <% @messages.each do |message| %>
+      <li><h3 class="rant"><small class="rant-color"><%= message.text %></small></h3></li>
+    <% end %>
+  </ul>
+</div>
+
+
 
 <div id="feeling-box">
   <form id="feeling-add">
+  <h3>Add a Rant:</h3>
     <textarea cols="5" rows="5">
     </textarea>
     <br />
-    <input id="feeling-button" type="submit" />
+    <input class="button radius" id="feeling-button" type="submit" />
   </form>
+</div>
+
+<div id="dream-stats">
+  <div id="buttons">
+    <a id="dream-button-inside" class="button expand alert radius">Click for Dream Mode</a>
+  </div>
+  
+
+  <div id="dream-sentiment"></div>
+  <div id="donuts">
+    <div id="positive-keywords-dreams"></div>
+    <div id="negative-keywords-dreams"></div>
+  </div>
+
+  <div id="schedule-box">
+    <form id="schedule-add">
+    <h3>What day/time do you want to record your dreams?</h3>
+      <textarea id="schedule-text" cols="5" rows="5">
+      </textarea>
+      <br />
+      <input class="button radius" id="schedule-button" type="submit" />
+    </form>
+  </div>
 </div>
 
 <div id="buttons">
-  <a id="journal-button" class="button radius">Journal Stats</a>
-  <a id="dream-button" class="button radius">Dream Stats</a>
+  <a id="dream-button" class="button expand alert radius">Click for Dream Mode</a>
 </div>
-
-<div id="overall-sentiment"></div>
-<div id="donuts">
-  <div id="positive-keywords"></div>
-  <div id="negative-keywords"></div>
-</div>
-
-<div id="schedule-box">
-  <form id="schedule-add">
-    <textarea id="schedule-text" cols="5" rows="5">
-    </textarea>
-    <br />
-    <input id="schedule-button" type="submit" />
-  </form>
-</div>
-
 
 <script>
 
-$( "#journal-button" ).click(function() {
-  $( "#overall-sentiment" ).show( "fold", 1000 );
-});
 
-  var overall_chart_info_test = [
-    { y: '2006', a: 100, b: 90 },
-    { y: '2007', a: 75,  b: 65 },
-    { y: '2008', a: 50,  b: 40 },
-    { y: '2009', a: 75,  b: 65 },
-    { y: '2010', a: 50,  b: 40 },
-    { y: '2011', a: 75,  b: 65 },
-    { y: '2012', a: 100, b: 90 }
-  ]
+$(document).ready(function() {
+        $("#journal-stats").hide();
+        $("#dream-stats").hide();
+        $('#journal-button').click(function() {
+                $('#journal-stats').toggle("slide");
+        });
+        $('#dream-button').click(function() {
+                $('#dream-stats').toggle("blind");
+        });
+  });   $('#dream-button-inside').click(function() {
+                $('#dream-stats').toggle("clip");
+        });
 
-  // var overall_chart_info = []
+// The following stats are for the user's journal entries
 
-  // for (var i=0;i<gon.messages.length;i++) { 
-  //   overall_chart_info.push({y: gon.messages[i].created_at.toString().split("T").join(" ").split(".")[0], a: gon.messages[i].sentiment});
-  // }
+// These are test stats so you don't need to hit API during testing
+  // var overall_chart_info_test = [
+  //   { y: '2006', a: 100, b: 90 },
+  //   { y: '2007', a: 75,  b: 65 },
+  //   { y: '2008', a: 50,  b: 40 },
+  //   { y: '2009', a: 75,  b: 65 },
+  //   { y: '2010', a: 50,  b: 40 },
+  //   { y: '2011', a: 75,  b: 65 },
+  //   { y: '2012', a: 100, b: 90 }
+  // ]
+
+
+// This is the line chart for overall journal entry sentiment
+
+  var overall_chart_info = []
+
+  for (var i=0;i<gon.messages.length;i++) { 
+    overall_chart_info.push({y: gon.messages[i].created_at.toString().split("T").join(" ").split(".")[0], a: gon.messages[i].sentiment});
+  }
 
   Morris.Line({
     element: 'overall-sentiment',
-    data: overall_chart_info_test,
+    data: overall_chart_info,
     xkey: 'y',
     ykeys: ['a'],
     labels: ['Series A']
   });
 
-  var negative_keywords_info_test = [
-    {label: "Download Sales", value: 12},
-    {label: "In-Store Sales", value: 300},
-    {label: "Mail-Order Sales", value: 20}
-  ]
-  var positive_keywords_info_test = [
-    {label: "Download Sales", value: 12},
-    {label: "In-Store Sales", value: 300},
-    {label: "Mail-Order Sales", value: 20}
-  ]
+  // var negative_keywords_info_test = [
+  //   {label: "Download Sales", value: 12},
+  //   {label: "In-Store Sales", value: 300},
+  //   {label: "Mail-Order Sales", value: 20}
+  // ]
+  // var positive_keywords_info_test = [
+  //   {label: "Download Sales", value: 12},
+  //   {label: "In-Store Sales", value: 300},
+  //   {label: "Mail-Order Sales", value: 20}
+  // ]
 
-  // var negative_keywords_info = []
-  // var positive_keywords_info = []
+  var negative_keywords_info = []
+  var positive_keywords_info = []
   
-  // for (var i=0;i<gon.keywords.length;i++) {
-  //   if(gon.keywords[i].split(" ")[gon.keywords[i].split(" ").length - 1] != "ERROR"){
-  //     if(gon.keywords[i].split(" ")[gon.keywords[i].split(" ").length - 1] < 0){
-  //       var whole_keyword = gon.keywords[i].split(" ")
-  //       whole_keyword.pop()
-  //       negative_keywords_info.push({label: whole_keyword.join(" "), value: gon.keywords[i].split(" ")[gon.keywords[i].split(" ").length - 1]})
-  //     }
-  //     else if(gon.keywords[i].split(" ")[gon.keywords[i].split(" ").length - 1] > 0){
-  //       var whole_keyword = gon.keywords[i].split(" ")
-  //       whole_keyword.pop()
-  //       positive_keywords_info.push({label: whole_keyword.join(" "), value: gon.keywords[i].split(" ")[gon.keywords[i].split(" ").length - 1]})
-  //     }
+  for (var i=0;i<gon.keywords.length;i++) {
+    if(gon.keywords[i].split(" ")[gon.keywords[i].split(" ").length - 1] != "ERROR"){
+      if(gon.keywords[i].split(" ")[gon.keywords[i].split(" ").length - 1] < 0){
+        var whole_keyword = gon.keywords[i].split(" ")
+        whole_keyword.pop()
+        negative_keywords_info.push({label: whole_keyword.join(" "), value: gon.keywords[i].split(" ")[gon.keywords[i].split(" ").length - 1]})
+      }
+      else if(gon.keywords[i].split(" ")[gon.keywords[i].split(" ").length - 1] > 0){
+        var whole_keyword = gon.keywords[i].split(" ")
+        whole_keyword.pop()
+        positive_keywords_info.push({label: whole_keyword.join(" "), value: gon.keywords[i].split(" ")[gon.keywords[i].split(" ").length - 1]})
+      }
 
-  //   }
-  // }
+    }
+  }
 
   Morris.Donut({
     element: 'negative-keywords',
-    data: negative_keywords_info_test,
+    data: negative_keywords_info,
     colors: ['#FF0000']
   });
 
   Morris.Donut({
     element: 'positive-keywords',
-    data: positive_keywords_info_test,
+    data: positive_keywords_info,
     colors: ['#0000FF']
   });
 
+// The following stats are for the user's dream journal 
+
+  // var overall_dream_info_test = [
+  //   { y: '2006', a: 100, b: 90 },
+  //   { y: '2007', a: 75,  b: 65 },
+  //   { y: '2008', a: 50,  b: 40 },
+  //   { y: '2009', a: 75,  b: 65 },
+  //   { y: '2010', a: 50,  b: 40 },
+  //   { y: '2011', a: 75,  b: 65 },
+  //   { y: '2012', a: 100, b: 90 }
+  // ]
+
+  var overall_dream_info = []
+
+  for (var i=0;i<gon.dreams.length;i++) { 
+    overall_dream_info.push({y: gon.dreams[i].created_at.toString().split("T").join(" ").split(".")[0], a: gon.dreams[i].sentiment});
+  }
+
+  Morris.Line({
+    element: 'dream-sentiment',
+    data: overall_dream_info,
+    xkey: 'y',
+    ykeys: ['a'],
+    labels: ['Series A']
+  });
+
+  // var negative_keywords_dream_test = [
+  //   {label: "Dreams", value: 12},
+  //   {label: "Nightmares", value: 300},
+  //   {label: "Fun", value: 20}
+  // ]
+  // var positive_keywords_dream_test = [
+  //   {label: "Nightmares", value: 12},
+  //   {label: "Dreams", value: 300},
+  //   {label: "Fun", value: 20}
+  // ]
+
+  var negative_dreamwords_data = []
+  var positive_dreamwords_data = []
+  
+  for (var i=0;i<gon.dreamwords.length;i++) {
+    if(gon.dreamwords[i].split(" ")[gon.dreamwords[i].split(" ").length - 1] != "ERROR"){
+      if(gon.dreamwords[i].split(" ")[gon.dreamwords[i].split(" ").length - 1] < 0){
+        var whole_keyword = gon.dreamwords[i].split(" ")
+        whole_keyword.pop()
+        negative_dreamwords_data.push({label: whole_keyword.join(" "), value: gon.dreamwords[i].split(" ")[gon.dreamwords[i].split(" ").length - 1]})
+      }
+      else if(gon.dreamwords[i].split(" ")[gon.dreamwords[i].split(" ").length - 1] > 0){
+        var whole_keyword = gon.dreamwords[i].split(" ")
+        whole_keyword.pop()
+        positive_dreamwords_data.push({label: whole_keyword.join(" "), value: gon.dreamwords[i].split(" ")[gon.dreamwords[i].split(" ").length - 1]})
+      }
+
+    }
+  }
+
+  Morris.Donut({
+    element: 'negative-keywords-dreams',
+    data: negative_dreamwords_data,
+    colors: ['#00FFFF']
+  });
+
+  Morris.Donut({
+    element: 'positive-keywords-dreams',
+    data: positive_dreamwords_data,
+    colors: ['#FF00FF']
+  });
   
 </script>

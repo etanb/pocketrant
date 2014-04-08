@@ -1,20 +1,24 @@
+#welcome {
+  padding-top: 200px;
+  text-align: center;
+}
 #intro{
 
-  font-size: 20px;
-  margin: 10px 0 0 10px;
+  font-size: 55px;
+  margin: 0 auto;
   white-space: nowrap;
   overflow: hidden;
-  width: 30em;
+  width: 90%;
   -webkit-animation: type 4s steps(60, end);
   animation: type 4s steps(60, end); 
 }
 
 #intro:nth-child(2){
-  -webkit-animation: type2 8s steps(60, end);
-  animation: type2 8s steps(60, end);
+  -webkit-animation: type2 6s steps(60, end);
+  animation: type2 6s steps(60, end);
 }
 
-span{
+#blink{
   -webkit-animation: blink 1s infinite;
   animation: blink 1s infinite;
 }

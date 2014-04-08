@@ -12,11 +12,11 @@
 //
 //= require raphael
 //= require morris
-//= require jquery.ui.all
 //= require underscore
 //= require jquery
 //= require jquery_ujs
 //= require foundation
+//= require jquery.ui.all
 //= require turbolinks
 //= require_tree .
 

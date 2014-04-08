@@ -1,5 +1,39 @@
+#messages-render {
+  -webkit-column-count:2; /* Chrome, Safari, Opera */
+  -moz-column-count:2; /* Firefox */
+  column-count:2;
+}
+
+.rant {
+  background-color: black;
+  text-align: center;
+}
+
+.rant-color {
+  color: white;
+}
+
+#begin-nav {
+  text-align: center;
+}
+
+.begin-nav-item {
+  display: inline-block;
+  padding-left: 200px;
+  padding-right: 200px;
+}
+
+#dream-button {
+  width: 70%;
+}
+
+#dream-button-inside {
+  width: 70%;
+}
+
 #feeling-box {
   width: 35%;
+  margin: 0 auto;
 }
 
 #journal-button {
@@ -12,6 +46,7 @@
 
 #schedule-box {
   width: 35%;
+  margin: 0 auto;
 }
 
 #buttons {
@@ -27,5 +62,13 @@
 }
 
 #negative-keywords {
+  display: inline-block;
+}
+
+#positive-keywords-dreams {
+  display: inline-block;
+}
+
+#negative-keywords-dreams {
   display: inline-block;
 }

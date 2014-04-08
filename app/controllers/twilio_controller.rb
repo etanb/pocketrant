@@ -34,7 +34,7 @@ class TwilioController < ApplicationController
     @user_id = User.find_by(phone: @message_sender_phone.to_i).id 
 
     twilio_phone_number = "6467626027"
-
+  
     alchemy_general_sentiment(@message_content, @user_id)
 
     @twilio_client.account.sms.messages.create(
