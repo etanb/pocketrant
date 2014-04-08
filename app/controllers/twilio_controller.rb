@@ -1,4 +1,5 @@
 require 'twilio-ruby'
+require 'chronic'
 class TwilioController < ApplicationController
   include SentimentHelper
   include Webhookable
@@ -6,7 +7,14 @@ class TwilioController < ApplicationController
   after_filter :set_header
 
   def create
-    alchemy_general_sentiment(params[:text])
+    alchemy_general_sentiment(params[:text], current_user.id)
+  end
+
+  def schedule
+    Schedule.create(user_id: current_user.id, schedule: Chronic.parse(params[:text])) 
+    @schedule_delay = Time.now - Schedule.where(user_id: current_user.id).last.schedule
+    @current_user_phone = User.find(current_user.id).phone
+    MyWorker.perform_in(@schedule_delay.seconds, @current_user_phone) 
   end
  
   def voice
@@ -23,32 +31,17 @@ class TwilioController < ApplicationController
     @twilio_client = Twilio::REST::Client.new TWILIO_SID, TWILIO_TOKEN
     @message_content = params[:Body]
     @message_sender_phone = params[:From]
- 
+    @user_id = User.find_by(phone: @message_sender_phone.to_i).id 
 
     twilio_phone_number = "6467626027"
 
-    alchemy_general_sentiment(@message_content)
+    alchemy_general_sentiment(@message_content, @user_id)
 
     @twilio_client.account.sms.messages.create(
       :from => "+1#{twilio_phone_number}",
       :to => @message_sender_phone,
-      :body => "Your feelings have been recorded. Thank you!"
+      :body => "Your thoughts have been recorded. Thank you."
     )
   end
 
-
-
-
-  # TWILIO_PHONE_NUMBER = '6467626027'
-  # @client = Twilio::REST::Client.new TWILIO_SID, TWILIO_TOKEN
-  
-  # def outgoing
-
-  #   @client.account.messages.create(
-  #     :from => "+1#{TWILIO_PHONE_NUMBER}",
-  #     :to => '+16467524876',
-  #     :body => 'Hey there!'
-  #   )
-    
-  # end
 end

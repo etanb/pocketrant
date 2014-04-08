@@ -2,7 +2,11 @@ source 'https://rubygems.org'
 
 gem 'gon', '3.0.5'
 
+gem 'sidekiq'
+
 gem 'rabl-rails'
+
+gem 'chronic'
 
 gem 'underscore-rails'
 
@@ -14,11 +18,15 @@ gem 'httparty'
 
 gem 'devise'
 
+gem 'sinatra', require: false
+
+gem 'slim'
+
 gem 'zurb-foundation'
 
 gem 'twilio-ruby', '~> 3.11'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '4.0.3'
+gem 'rails', '~> 4.0.4'
 
 # Use sqlite3 as the database for Active Record
 gem 'pg'

@@ -1,15 +1,14 @@
 require 'httparty'
 module SentimentHelper
 
-  def alchemy_general_sentiment(string)
+  def alchemy_general_sentiment(string, user)
     message = string.downcase
     options = {:query => {:apikey => '8cda6697e241a8ea3b13eda9e3851dd953d462bf',
       :text => message,
       :outputMode => 'json'} }
       response = HTTParty.get("http://access.alchemyapi.com/calls/text/TextGetTextSentiment", options)
-
     Message.create(
-      {text: message, sentiment: response["docSentiment"]["score"]}
+      {text: message, sentiment: response["docSentiment"]["score"], user_id: user}
       )
   end
 
