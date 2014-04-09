@@ -20,6 +20,8 @@ gem 'httparty'
 
 gem 'devise'
 
+gem 'rails-erd'
+
 gem 'sinatra', require: false
 
 gem 'slim'
@@ -83,7 +85,6 @@ end
 
 gem 'rails_12factor', group: :production
 
-gem 'rails-erd'
 
 # group :doc do
 #  # bundle exec rake doc:rails generates the API under doc/api.

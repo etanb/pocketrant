@@ -1,28 +1,74 @@
-== README
+== Pocket Rant
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+### GA WDI NYC Jan 14, Final Project
 
-Things you may want to cover:
+### Overview
 
-* Ruby version
+Throughout the day, we go through many different situations and feel many different things. Marking down your feelings is usually associated with journaling which is just too text heavy and attention consuming for most people, including myself. 
+ 
+Introducing Pocket Rant, the easiest way to report how you're feeling. Either via text or mobile, you send in a few words of how you're feeling "grumpy, sad, hungry" and it'll be populated to your profile. They can also input they're feeling into a web app. The money is in the report. When a user goes to their profile they'll get a report of how they've been feeling and if they use it long enough, they'll receive sentiment analysis about how they've been feeling over time. This can be represented with texts and graphs. There's also a Dream Journal mode where Pocket Rant will text you when you want to wake up so that you can immediately text the app your dreams. These two graphs will be seperate so you can compare how your dreams and day journaling compare.
 
-* System dependencies
+### Technologies Used
 
-* Configuration
+For development:
 
-* Database creation
+  gem 'gon', '3.0.5'
 
-* Database initialization
+  gem 'sidekiq'
 
-* How to run the test suite
+  gem 'jquery-ui-rails'
 
-* Services (job queues, cache servers, search engines, etc.)
+  gem 'rabl-rails'
 
-* Deployment instructions
+  gem 'chronic'
 
-* ...
+  gem 'underscore-rails'
+
+  gem 'morrisjs-rails'
+
+  gem 'raphael-rails'
+
+  gem 'httparty'
+
+  gem 'devise'
+
+  gem 'rails-erd'
+
+  gem 'sinatra', require: false
+
+  gem 'slim'
+
+  gem 'zurb-foundation'
+
+For testing: 
+
+  gem 'pry-rails'
+
+  gem 'rspec-rails'
+
+  gem 'capybara'
+
+  gem 'launchy'
+
+  gem 'shoulda-matchers'
+
+  gem 'factory_girl_rails'
+
+  gem 'ffaker', '~> 1.2.0'
+
+  gem 'simplecov'
 
 
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.
+### ERD
+
+Users have_many: schedules, dreams and messages
+
+Schedule belong_to: user
+Dream belong_to: user
+Message belong_to: user
+
+
+### User Stories
+
+https://www.pivotaltracker.com/s/projects/1052562
+
