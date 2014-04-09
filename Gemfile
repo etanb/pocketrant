@@ -67,7 +67,7 @@ group :development, :test do
   gem 'jasmine'
 
   # acceptance testing
-  # gem 'capybara'
+  gem 'capybara'
   # gem 'capybara-webkit'
   gem 'launchy'
 
