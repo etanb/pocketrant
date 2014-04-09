@@ -4,6 +4,12 @@
   column-count:2;
 }
 
+.percentages {
+  display: inline-block;
+  padding-left: 80px;
+  padding-right: 80px;
+}
+
 .rant {
   background-color: black;
   text-align: center;

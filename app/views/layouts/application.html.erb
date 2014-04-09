@@ -28,19 +28,6 @@
 
   <body>
 
-<!--     <div id="user_nav">
-      <% if user_signed_in? %>
-        Signed in as <%= current_user.email %>. Not you?
-        <%= link_to "Sign out", destroy_user_session_path, :method => :delete %>
-        <%= link_to "Profile", current_user %>
-      <% else %>
-        <%= link_to "Sign up", new_user_registration_path %> or <%= link_to "sign in", new_user_session_path %>
-      <% end %>
-    </div>
-    <p class="notice"><%= notice %></p>
-    <p class="alert"><%= alert %></p> -->
-
-
     <nav class="top-bar" data-topbar>
   <ul class="title-area">
     <li class="name">
@@ -57,7 +44,7 @@
       <li class="active"><a href="#"><%= link_to "Sign out", destroy_user_session_path, :method => :delete %></a></li>
       <li class="active"><a href="#"><%= link_to "Profile", current_user %></a></li>
       <% else %>
-      <li class="active"><a href="#"><%= link_to "Sign up", new_user_registration_path %> or <%= link_to "sign in", new_user_session_path %></a></li>
+      <li class="active"><a href="#"><%= link_to "Sign up", new_user_registration_path %></a></li> or <li class="active"><a href="#"><%= link_to "sign in", new_user_session_path %></a></li>
       <% end %>
     </ul>
 

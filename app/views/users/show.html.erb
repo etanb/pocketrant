@@ -10,6 +10,7 @@
 <div id="journal-stats">
   <div id="overall-sentiment"></div>
   <div id="donuts">
+    <div><h2 class="percentages">Positive Percentage</h2><h2 class="percentages">Negative Percentage</h2></div>
     <div id="positive-keywords"></div>
     <div id="negative-keywords"></div>
   </div>
@@ -43,6 +44,7 @@
 
   <div id="dream-sentiment"></div>
   <div id="donuts">
+    <div><h2 class="percentages">Positive Percentage</h2><h2 class="percentages">Negative Percentage</h2></div>
     <div id="positive-keywords-dreams"></div>
     <div id="negative-keywords-dreams"></div>
   </div>
@@ -105,7 +107,7 @@ $(document).ready(function() {
     data: overall_chart_info,
     xkey: 'y',
     ykeys: ['a'],
-    labels: ['Series A']
+    labels: ['Sentiment']
   });
 
   // var negative_keywords_info_test = [
@@ -127,12 +129,12 @@ $(document).ready(function() {
       if(gon.keywords[i].split(" ")[gon.keywords[i].split(" ").length - 1] < 0){
         var whole_keyword = gon.keywords[i].split(" ")
         whole_keyword.pop()
-        negative_keywords_info.push({label: whole_keyword.join(" "), value: gon.keywords[i].split(" ")[gon.keywords[i].split(" ").length - 1]})
+        negative_keywords_info.push({label: whole_keyword.join(" "), value: parseInt(Math.abs(gon.keywords[i].split(" ")[gon.keywords[i].split(" ").length - 1]) * 100)})
       }
       else if(gon.keywords[i].split(" ")[gon.keywords[i].split(" ").length - 1] > 0){
         var whole_keyword = gon.keywords[i].split(" ")
         whole_keyword.pop()
-        positive_keywords_info.push({label: whole_keyword.join(" "), value: gon.keywords[i].split(" ")[gon.keywords[i].split(" ").length - 1]})
+        positive_keywords_info.push({label: whole_keyword.join(" "), value: parseInt(Math.abs(gon.keywords[i].split(" ")[gon.keywords[i].split(" ").length - 1]) * 100)})
       }
 
     }
@@ -195,12 +197,12 @@ $(document).ready(function() {
       if(gon.dreamwords[i].split(" ")[gon.dreamwords[i].split(" ").length - 1] < 0){
         var whole_keyword = gon.dreamwords[i].split(" ")
         whole_keyword.pop()
-        negative_dreamwords_data.push({label: whole_keyword.join(" "), value: gon.dreamwords[i].split(" ")[gon.dreamwords[i].split(" ").length - 1]})
+        negative_dreamwords_data.push({label: whole_keyword.join(" "), value: parseInt(Math.abs(gon.dreamwords[i].split(" ")[gon.dreamwords[i].split(" ").length - 1]) * 100)})
       }
       else if(gon.dreamwords[i].split(" ")[gon.dreamwords[i].split(" ").length - 1] > 0){
         var whole_keyword = gon.dreamwords[i].split(" ")
         whole_keyword.pop()
-        positive_dreamwords_data.push({label: whole_keyword.join(" "), value: gon.dreamwords[i].split(" ")[gon.dreamwords[i].split(" ").length - 1]})
+        positive_dreamwords_data.push({label: whole_keyword.join(" "), value: parseInt(Math.abs(gon.dreamwords[i].split(" ")[gon.dreamwords[i].split(" ").length - 1]) * 100)})
       }
 
     }
@@ -209,13 +211,13 @@ $(document).ready(function() {
   Morris.Donut({
     element: 'negative-keywords-dreams',
     data: negative_dreamwords_data,
-    colors: ['#00FFFF']
+    colors: ['#FF0000']
   });
 
   Morris.Donut({
     element: 'positive-keywords-dreams',
     data: positive_dreamwords_data,
-    colors: ['#FF00FF']
+    colors: ['#0000FF']
   });
   
 </script>
